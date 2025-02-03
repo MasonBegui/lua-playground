@@ -38,4 +38,52 @@ end
 --for loop with step
 for i = 10, 1, -2 do
     print("Descending to dungeon floor " .. i)
-end  
+end
+--functions
+function greetPlayer(name, level)
+    print("Greetings, " .. name .. "You are at level " .. level .. ".")
+end
+
+greetPlayer("Mason the wariror ", 10)
+
+print() --empty line
+
+function calculateDamage(weaponStrength, level)
+    return weaponStrength * level
+end
+
+damage = calculateDamage(5, 10)
+print("Total damage dealt: " .. damage)
+
+Player = {
+    attack = function (self, target)
+    print(self.name .. " attacks " .. target.name .. " with their" .. self.weapon .. "!")
+    target.health = target.health - (self.level * 5)
+    print(target.name .. " now has " .. target.health .. " health.")
+    end,
+    heal = function (self)
+        print(self.name .. " heals themeselves!")
+        self.health = self.health + 20
+        print(self.name .. " now has " .. self.health .. " health.")
+    end
+    }  
+    
+    function createplayer(name, level, health, weapon)
+        local newPlayer = {
+            name = name,
+            level = level,
+            health = health,
+            weapon = weapon
+        }
+        setmetatable(newPlayer, {__index = Player})
+        return newPlayer
+    end
+
+
+
+-- Random number example
+print("A level " .. math.random(0,10) .. " enemy apeared")
+print("A level " .. math.random(0,10) .. " enemy apeared")
+print("A level " .. math.random(0,10) .. " enemy apeared")
+print("A level " .. math.random(0,10) .. " enemy apeared")
+print("A level " .. math.random(0,10) .. " enemy apeared")
